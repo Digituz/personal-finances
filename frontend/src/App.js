@@ -1,12 +1,19 @@
 import React, {Component} from 'react';
 import Header from '@digituz/react-header';
-import logo from './logo.svg';
+import Button from '@digituz/react-button';
 import './App.css';
 
 class App extends Component {
+  heyThere() {
+    alert('hey there!');
+  }
+
   render() {
     return (
-      <Header title="Personal Finances"/>
+      <div>
+        <Header title="Personal Finances"/>
+        <Button onClick={this.heyThere} text="Hey there!" />
+      </div>
     );
   }
 }
