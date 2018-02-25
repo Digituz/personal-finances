@@ -1,28 +1,25 @@
-.App {
-  text-align: center;
+div.digituz-panel {
+  display: grid;
+  grid-template-rows: 4px 60px 1fr;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+div.digituz-panel-coloured-border {
+  background-image: linear-gradient(to right, #3498db 33%, #62cb31 33%, #62cb31 66%, #ffb606 66%, #ffb606 100%);
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+div.digituz-panel-body {
+  margin-top: 50px;
 }
 
-.App-title {
-  font-size: 1.5em;
+div.digituz-panel-header {
+  background-color: #fff;
+  box-shadow: 0 3px 5px #ccc;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+div.digituz-panel-header h1 {
+  font-size: 20px;
+  line-height: 35px;
+  color: #666;
 }
