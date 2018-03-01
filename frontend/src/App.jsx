@@ -3,6 +3,11 @@ import React, {Component} from 'react';
 import Header from '@digituz/react-header';
 import Button from '@digituz/react-button';
 import './App.css';
+import {
+  Route,
+} from 'react-router-dom';
+import Callback from './Callback/Callback';
+import LandingPage from './LandingPage/LandingPage';
 
 class App extends Component {
   constructor(props) {
@@ -23,14 +28,15 @@ class App extends Component {
   render() {
     return (
       <div className="digituz-panel">
-        <div className="digituz-panel-coloured-border"></div>
+        <div className="digituz-panel-coloured-border" />
         <div className="digituz-panel-header">
           <Header title="Personal Finances">
             <Button onClick={this.signIn} text="Sign In" />
           </Header>
         </div>
         <div className="digituz-panel-body">
-
+          <Route path="/" component={LandingPage}/>
+          <Route path="/callback" component={Callback}/>
         </div>
       </div>
     );

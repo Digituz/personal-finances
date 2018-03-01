@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@digituz/react-button": "0.0.21",
-    "@digituz/react-header": "0.0.21",
+    "@digituz/react-button": "^1.0.3",
+    "@digituz/react-header": "^1.0.3",
+    "@digituz/react-input-label": "^1.0.3",
     "auth0-web": "^1.7.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1"
   },
   "scripts": {
