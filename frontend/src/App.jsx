@@ -1,13 +1,11 @@
 import * as Auth0 from 'auth0-web';
 import React, {Component} from 'react';
-import Header from '@digituz/react-header';
+import PanelHeader from '@digituz/react-panel-header';
+import PanelBody from '@digituz/react-panel-body';
 import Button from '@digituz/react-button';
+import Card from '@digituz/react-card';
+import Panel from '@digituz/react-panel';
 import './App.css';
-import {
-  Route,
-} from 'react-router-dom';
-import Callback from './Callback/Callback';
-import LandingPage from './LandingPage/LandingPage';
 
 class App extends Component {
   constructor(props) {
@@ -27,18 +25,20 @@ class App extends Component {
 
   render() {
     return (
-      <div className="digituz-panel">
-        <div className="digituz-panel-coloured-border" />
-        <div className="digituz-panel-header">
-          <Header title="Personal Finances">
-            <Button onClick={this.signIn} text="Sign In" />
-          </Header>
-        </div>
-        <div className="digituz-panel-body">
-          <Route path="/" component={LandingPage}/>
-          <Route path="/callback" component={Callback}/>
-        </div>
-      </div>
+      <Panel>
+        <PanelHeader title="Personal Finances">
+          <Button onClick={this.signIn} text="Sign In" />
+        </PanelHeader>
+        <PanelBody>
+          <Card className="col-sm-12 col-md-4 col-lg-8">
+            <h2>Testing</h2>
+            <p>Is it working?</p>
+            <p>Is it working?</p>
+            <p>Is it working?</p>
+            <p>Is it working?</p>
+          </Card>
+        </PanelBody>
+      </Panel>
     );
   }
 }
