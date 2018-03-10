@@ -53,12 +53,21 @@ class App extends Component {
           </div>
         </PanelHeader>
         <PanelBody>
-          <Card className="col-sm-12 col-md-4 col-lg-8">
-            <h2>Testing</h2>
-            <p>Is it working?</p>
-            <p>Is it working?</p>
-            <p>Is it working?</p>
-            <p>Is it working?</p>
+          <Card className="col-sm-12 col-md-6 col-md-offset-3">
+            <h2>Welcome!</h2>
+            <p>
+              The goal of this app is to help users to manage their
+              money more easily. Here, users will be able to:
+            </p>
+            <ul>
+              <li>Input expenses.</li>
+              <li>Input incomes.</li>
+              <li>Define monthly goals.</li>
+              <li>Track your status with nice charts.</li>
+            </ul>
+            <p>
+              To start using the app, please, sign in!
+            </p>
           </Card>
         </PanelBody>
       </Panel>
