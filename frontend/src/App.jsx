@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import PanelHeader from '@digituz/react-panel-header';
 import PanelBody from '@digituz/react-panel-body';
 import Button from '@digituz/react-button';
+import Grid from '@digituz/react-grid';
 import Card from '@digituz/react-card';
 import Panel from '@digituz/react-panel';
 import VerticalMenu from '@digituz/react-vertical-menu';
@@ -53,21 +54,27 @@ class App extends Component {
           </div>
         </PanelHeader>
         <PanelBody>
-          <Card className="col-sm-12 col-md-6 col-md-offset-3">
-            <h2>Welcome!</h2>
-            <p>
-              The goal of this app is to help users to manage their
-              money more easily. Here, users will be able to:
-            </p>
-            <ul>
-              <li>Input expenses.</li>
-              <li>Input incomes.</li>
-              <li>Define monthly goals.</li>
-              <li>Track your status with nice charts.</li>
-            </ul>
-            <p>
-              To start using the app, please, sign in!
-            </p>
+          <Card
+            title="Welcome!"
+            className="col-sm-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2 col-xl-6 col-xl-offset-3">
+            <Grid>
+              <p className="col-sm-12">
+                The goal of this app is to help users to manage their
+                money more easily. Here, users will be able to:
+              </p>
+              <ul className="col-sm-12">
+                <li>Input expenses.</li>
+                <li>Input incomes.</li>
+                <li>Define monthly goals.</li>
+                <li>Track your status with nice charts.</li>
+              </ul>
+              <p className="col-sm-12">
+                To start using the app, please, sign in!
+              </p>
+              <div className="col-sm-12 center">
+                <Button onClick={this.signIn} text="Sign In" />
+              </div>
+            </Grid>
           </Card>
         </PanelBody>
       </Panel>

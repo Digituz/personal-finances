@@ -4,7 +4,8 @@
 # uninstall all @digituz/react-components
 npm rm @digituz/react-button \
   @digituz/react-card \
-  @digituz/react-header
+  @digituz/react-grid \
+  @digituz/react-header \
   @digituz/react-if \
   @digituz/react-input-label \
   @digituz/react-panel \
@@ -15,6 +16,8 @@ npm rm @digituz/react-button \
 # install all @digituz/react-components
 npm i @digituz/react-button \
   @digituz/react-card \
+  @digituz/react-grid \
+  @digituz/react-header \
   @digituz/react-if \
   @digituz/react-input-label \
   @digituz/react-panel \
@@ -25,6 +28,8 @@ npm i @digituz/react-button \
 # link all @digituz/react-components
 npm link @digituz/react-button \
   @digituz/react-card \
+  @digituz/react-grid \
+  @digituz/react-header \
   @digituz/react-if \
   @digituz/react-input-label \
   @digituz/react-panel \
