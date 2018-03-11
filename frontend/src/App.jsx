@@ -66,7 +66,7 @@ class App extends Component {
                 <li>Input expenses.</li>
                 <li>Input incomes.</li>
                 <li>Define monthly goals.</li>
-                <li>Track your status with nice charts.</li>
+                <li>Track status through nice charts.</li>
               </ul>
               <p className="sm-12">
                 To start using the app, please, sign in!
