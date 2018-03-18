@@ -1,12 +1,9 @@
 import * as Auth0 from 'auth0-web';
 import React, {Component} from 'react';
-import PanelHeader from '@digituz/react-panel-header';
-import PanelBody from '@digituz/react-panel-body';
-import Button from '@digituz/react-button';
-import Grid from '@digituz/react-grid';
-import Card from '@digituz/react-card';
-import Panel from '@digituz/react-panel';
-import VerticalMenu from '@digituz/react-vertical-menu';
+import {
+  PanelHeader, PanelBody, Button, If,
+  Grid, Modal, Card, Panel, VerticalMenu
+} from '@digituz/react-components';
 import './App.css';
 
 class App extends Component {
@@ -20,10 +17,20 @@ class App extends Component {
       responseType: 'token id_token',
       scope: 'openid profile manage:finances'
     });
+
+    this.state = {
+      showModal: true,
+    }
   }
 
   signIn = Auth0.signIn;
   signOut = Auth0.signOut;
+
+  toggleModal() {
+    this.setState({
+      showModal: !this.state.showModal,
+    });
+  }
 
   render() {
     const divStyle = {
@@ -54,6 +61,12 @@ class App extends Component {
           </div>
         </PanelHeader>
         <PanelBody>
+          <If condition={this.state.showModal}>
+            <Modal onSuccess={() => { this.toggleModal() }}>
+              <h3>Delete?</h3>
+              <p>This action cannot be undone.</p>
+            </Modal>
+          </If>
           <Card
             title="Welcome!"
             className="sm-12 md-10 md-pad-1 lg-8 lg-pad-2 xl-6 xl-pad-3">
@@ -72,7 +85,7 @@ class App extends Component {
                 To start using the app, please, sign in!
               </p>
               <div className="sm-12 center">
-                <Button onClick={this.signIn} text="Sign In" />
+                <Button onClick={() => { this.toggleModal() }} text="Sign In" />
               </div>
             </Grid>
           </Card>
