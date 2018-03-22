@@ -1,10 +1,8 @@
 import * as Auth0 from 'auth0-web';
 import React, {Component} from 'react';
-import {
-  PanelHeader, PanelBody, Button, If,
-  Grid, Modal, Card, Panel, VerticalMenu
-} from '@digituz/react-components';
+import {Button, Card, Grid, If, Modal, Panel, PanelBody, PanelHeader, VerticalMenu} from '@digituz/react-components';
 import './App.css';
+import LandingPage from './LandingPage/LandingPage';
 
 class App extends Component {
   constructor(props) {
@@ -20,7 +18,9 @@ class App extends Component {
 
     this.state = {
       showModal: true,
-    }
+    };
+
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   signIn = Auth0.signIn;
@@ -32,6 +32,14 @@ class App extends Component {
     });
   }
 
+  guardedRoute() {
+    if (!Auth0.isAuthenticated()) {
+      alert('not ok');
+    } else {
+      alert('ok');
+    }
+  }
+
   render() {
     const divStyle = {
       display: 'grid',
@@ -41,11 +49,11 @@ class App extends Component {
     const submenus = [{
       title: 'Menu',
       items: [
-        { title: 'Overview', color: 'gray', onClick: () => {} },
-        { title: 'Expenses', color: '#e6665b', onClick: () => {} },
-        { title: 'Incomes', color: '#66ad66', onClick: () => {} },
-        { title: 'Goals', color: '#5e5eff', onClick: () => {} },
-        { title: 'Configuration', color: 'gray', onClick: () => {} }
+        { title: 'Overview', color: 'gray', onClick: () => { this.guardedRoute() } },
+        { title: 'Expenses', color: '#e6665b', onClick: () => { this.guardedRoute() } },
+        { title: 'Incomes', color: '#66ad66', onClick: () => { this.guardedRoute() } },
+        { title: 'Goals', color: '#5e5eff', onClick: () => { this.guardedRoute() } },
+        { title: 'Configuration', color: 'gray', onClick: () => { this.guardedRoute() } }
       ]
     }];
 
@@ -67,28 +75,7 @@ class App extends Component {
               <p>This action cannot be undone.</p>
             </Modal>
           </If>
-          <Card
-            title="Welcome!"
-            className="sm-12 md-10 md-pad-1 lg-8 lg-pad-2 xl-6 xl-pad-3">
-            <Grid>
-              <p className="sm-12">
-                The goal of this app is to help users to manage their
-                money more easily. Here, users will be able to:
-              </p>
-              <ul className="sm-12">
-                <li>Input expenses.</li>
-                <li>Input incomes.</li>
-                <li>Define monthly goals.</li>
-                <li>Track status through nice charts.</li>
-              </ul>
-              <p className="sm-12">
-                To start using the app, please, sign in!
-              </p>
-              <div className="sm-12 center">
-                <Button onClick={() => { this.toggleModal() }} text="Sign In" />
-              </div>
-            </Grid>
-          </Card>
+          <LandingPage toggleModal={this.toggleModal}/>
         </PanelBody>
       </Panel>
     );
