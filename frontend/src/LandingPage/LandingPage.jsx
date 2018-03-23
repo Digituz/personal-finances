@@ -11,7 +11,7 @@ class LandingPage extends Component {
         <Grid>
           <p className="sm-12">
             The goal of this app is to help users to manage their
-            money more easily. Here, users will be able to:
+            money more easily. Here, users can:
           </p>
           <ul className="sm-12">
             <li>Input expenses.</li>
