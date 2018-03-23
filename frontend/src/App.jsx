@@ -20,6 +20,8 @@ class App extends Component {
 
     this.state = {
       showModal: false,
+      modalTitle: '',
+      modalMessage: '',
     };
 
     this.toggleModal = this.toggleModal.bind(this);
@@ -41,11 +43,12 @@ class App extends Component {
   }
 
   guardedRoute() {
-    if (!Auth0.isAuthenticated()) {
-      alert('not ok');
-    } else {
-      alert('ok');
-    }
+    this.setState({
+      modalTitle: 'Hello there!',
+      modalMessage: 'Hey there! To use this functionality, first, you have to sign in. There is a button on the ' +
+      'top right corner, hit it to start using this app.',
+      showModal: true,
+    });
   }
 
   render() {
@@ -84,8 +87,8 @@ class App extends Component {
         <PanelBody>
           <If condition={this.state.showModal}>
             <Modal onSuccess={() => { this.toggleModal() }}>
-              <h3>Delete?</h3>
-              <p>This action cannot be undone.</p>
+              <h3>{this.state.modalTitle}</h3>
+              <p>{this.state.modalMessage}</p>
             </Modal>
           </If>
 
