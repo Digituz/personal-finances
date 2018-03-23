@@ -1,8 +1,10 @@
 import * as Auth0 from 'auth0-web';
 import React, {Component} from 'react';
-import {Button, Card, Grid, If, Modal, Panel, PanelBody, PanelHeader, VerticalMenu} from '@digituz/react-components';
+import {Route} from 'react-router-dom';
+import {Button, If, Modal, Panel, PanelBody, PanelHeader, VerticalMenu} from '@digituz/react-components';
 import './App.css';
 import LandingPage from './LandingPage/LandingPage';
+import Callback from './Callback/Callback';
 
 class App extends Component {
   constructor(props) {
@@ -17,14 +19,20 @@ class App extends Component {
     });
 
     this.state = {
-      showModal: true,
+      showModal: false,
     };
 
     this.toggleModal = this.toggleModal.bind(this);
   }
 
   signIn = Auth0.signIn;
-  signOut = Auth0.signOut;
+
+  signOut = () => {
+    Auth0.signOut({
+      returnTo: 'http://localhost:3000/',
+      clientID: 'wtgLEhG40Ns5v1HtHlZ3ZkKlci2McuUa',
+    })
+  };
 
   toggleModal() {
     this.setState({
@@ -64,7 +72,12 @@ class App extends Component {
             <VerticalMenu submenus={submenus} />
             <h1>Personal Finances</h1>
             <div className="horizontal-menu">
-              <Button onClick={this.signIn} text="Sign In" />
+              <If condition={!Auth0.isAuthenticated()}>
+                <Button onClick={this.signIn} text="Sign In" />
+              </If>
+              <If condition={Auth0.isAuthenticated()}>
+                <Button onClick={this.signOut} text="Sign Out" />
+              </If>
             </div>
           </div>
         </PanelHeader>
@@ -75,7 +88,11 @@ class App extends Component {
               <p>This action cannot be undone.</p>
             </Modal>
           </If>
-          <LandingPage toggleModal={this.toggleModal}/>
+
+          <Route exact path="/" render={() => (
+            <LandingPage toggleModal={this.toggleModal}/>
+          )} />
+          <Route path="/callback" component={Callback} />
         </PanelBody>
       </Panel>
     );
