@@ -1,8 +1,26 @@
+import * as Auth0 from 'auth0-web';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Button, Card, Grid} from '@digituz/react-components';
+import {Button, Card, Grid, If} from '@digituz/react-components';
 
 class LandingPage extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      isAuthenticated: Auth0.isAuthenticated(),
+    };
+  }
+
+  componentDidMount() {
+    Auth0.subscribe((isAuthenticated) => {
+      console.log(isAuthenticated);
+      this.setState({
+        isAuthenticated
+      });
+    });
+  }
+
   render() {
     return (
       <Card
@@ -19,12 +37,19 @@ class LandingPage extends Component {
             <li>Define monthly goals.</li>
             <li>Track status through nice charts.</li>
           </ul>
-          <p className="sm-12">
-            To start using the app, please, sign in!
-          </p>
-          <div className="sm-12 center">
-            <Button onClick={() => { this.props.toggleModal() }} text="Sign In" />
-          </div>
+          <If condition={!this.state.isAuthenticated}>
+            <p className="sm-12">
+              To start using the app, please, sign in!
+            </p>
+            <div className="sm-12 center">
+              <Button onClick={Auth0.signIn} text="Sign In" />
+            </div>
+          </If>
+          <If condition={this.state.isAuthenticated}>
+            <p className="sm-12">
+              To start using the app, choose an option on the vertical menu.
+            </p>
+          </If>
         </Grid>
       </Card>
     );
