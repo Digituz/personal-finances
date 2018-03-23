@@ -1,42 +1,24 @@
+import * as Auth0 from 'auth0-web';
 import React, {Component} from 'react';
+import { withRouter } from 'react-router-dom';
 import './Callback.css';
 
-const defaultMessage = 'Loading profile';
-
 class Callback extends Component {
-  constructor(props) {
-    super(props);
-
-    const self = this;
-    self.state = {
-      message: 'Loading profile',
-    };
-
-    self.interval = setInterval(() => {
-      let message = self.state.message;
-      if (message.length === 18) {
-        message = defaultMessage;
-      } else {
-        message += '.';
-      }
-      self.setState({
-        message,
-      });
-      console.log('here we go');
-    }, 500);
-  }
-
   render() {
     return (
       <div className="react-callback">
-        {this.state.message}
+        <h2>Loading Profile</h2>
+        <span>.</span>
       </div>
     );
   }
 
-  componentWillUnmount() {
-
+  componentDidMount() {
+    Auth0.handleAuthCallback((err) => {
+      if (err) alert(err);
+      this.props.history.push('/');
+    });
   }
 }
 
-export default Callback;
+export default withRouter(Callback);
