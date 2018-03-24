@@ -1,10 +1,11 @@
 import * as Auth0 from 'auth0-web';
 import React, {Component} from 'react';
-import {Route} from 'react-router-dom';
+import {Route, withRouter} from 'react-router-dom';
 import {Button, If, Modal, Panel, PanelBody, PanelHeader, VerticalMenu} from '@digituz/react-components';
 import './App.css';
 import LandingPage from './LandingPage/LandingPage';
 import Callback from './Callback/Callback';
+import Income from './Income/Income';
 
 class App extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class App extends Component {
       domain: 'digituz-corp.auth0.com',
       audience: 'https://personal-finances.digituz.com.br',
       clientID: 'wtgLEhG40Ns5v1HtHlZ3ZkKlci2McuUa',
-      redirectUri: 'http://localhost:3000/callback',
+      redirectUri: `${window.location.origin}/callback`,
       responseType: 'token id_token',
       scope: 'openid profile manage:finances'
     });
@@ -31,7 +32,7 @@ class App extends Component {
 
   signOut = () => {
     Auth0.signOut({
-      returnTo: 'http://localhost:3000/',
+      returnTo: `${window.location.origin}`,
       clientID: 'wtgLEhG40Ns5v1HtHlZ3ZkKlci2McuUa',
     })
   };
@@ -42,13 +43,18 @@ class App extends Component {
     });
   }
 
-  guardedRoute() {
+  guardedRoute(url) {
+    if (Auth0.isAuthenticated()) return this.go(url);
     this.setState({
       modalTitle: 'Hello there!',
       modalMessage: 'Hey there! To use this functionality, first, you have to sign in. There is a button on the ' +
       'top right corner, hit it to start using this app.',
       showModal: true,
     });
+  }
+
+  go(url) {
+    this.props.history.push(url);
   }
 
   render() {
@@ -62,7 +68,7 @@ class App extends Component {
       items: [
         { title: 'Overview', color: 'gray', onClick: () => { this.guardedRoute() } },
         { title: 'Expenses', color: '#e6665b', onClick: () => { this.guardedRoute() } },
-        { title: 'Incomes', color: '#66ad66', onClick: () => { this.guardedRoute() } },
+        { title: 'Incomes', color: '#66ad66', onClick: () => { this.guardedRoute('/income') } },
         { title: 'Goals', color: '#5e5eff', onClick: () => { this.guardedRoute() } },
         { title: 'Configuration', color: 'gray', onClick: () => { this.guardedRoute() } }
       ]
@@ -73,7 +79,7 @@ class App extends Component {
         <PanelHeader>
           <div style={divStyle}>
             <VerticalMenu submenus={submenus} />
-            <h1>Personal Finances</h1>
+            <h1 onClick={() => { this.go('/') }}>Personal Finances</h1>
             <div className="horizontal-menu">
               <If condition={!Auth0.isAuthenticated()}>
                 <Button onClick={this.signIn} text="Sign In" />
@@ -96,10 +102,11 @@ class App extends Component {
             <LandingPage toggleModal={this.toggleModal}/>
           )} />
           <Route path="/callback" component={Callback} />
+          <Route path="/income" component={Income} />
         </PanelBody>
       </Panel>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
