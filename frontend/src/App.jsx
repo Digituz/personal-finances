@@ -16,7 +16,11 @@ class App extends Component {
       clientID: 'wtgLEhG40Ns5v1HtHlZ3ZkKlci2McuUa',
       redirectUri: `${window.location.origin}/callback`,
       responseType: 'token id_token',
-      scope: 'openid profile manage:finances'
+      scope: 'openid profile ' +
+              'put:personal-finances ' +
+              'delete:personal-finances ' +
+              'post:personal-finances ' +
+              'get:personal-finances'
     });
 
     this.state = {
