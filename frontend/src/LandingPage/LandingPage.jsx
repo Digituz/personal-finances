@@ -14,7 +14,6 @@ class LandingPage extends Component {
 
   componentDidMount() {
     Auth0.subscribe((isAuthenticated) => {
-      console.log(isAuthenticated);
       this.setState({
         isAuthenticated
       });
