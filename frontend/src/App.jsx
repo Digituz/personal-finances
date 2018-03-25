@@ -30,6 +30,7 @@ class App extends Component {
     };
 
     this.toggleModal = this.toggleModal.bind(this);
+    this.showModal = this.showModal.bind(this);
   }
 
   signIn = Auth0.signIn;
@@ -44,6 +45,14 @@ class App extends Component {
   toggleModal() {
     this.setState({
       showModal: !this.state.showModal,
+    });
+  }
+
+  showModal(modalTitle, modalMessage) {
+    this.setState({
+      showModal: true,
+      modalTitle,
+      modalMessage,
     });
   }
 
@@ -106,7 +115,9 @@ class App extends Component {
             <LandingPage toggleModal={this.toggleModal}/>
           )} />
           <Route path="/callback" component={Callback} />
-          <Route path="/income" component={Income} />
+          <Route path="/income" render={() => (
+            <Income showModal={this.showModal}/>
+          )} />
         </PanelBody>
       </Panel>
     );
