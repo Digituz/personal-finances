@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import {Card, Button, Table} from '@digituz/react-components';
+import {showWithCents} from 'mask-js';
 import * as PersonalFinances from '../Services/PersonalFinances';
 
 class Incomes extends Component {
@@ -13,11 +14,12 @@ class Incomes extends Component {
   }
 
   render() {
+    const valueRenderer = (income) => (<span>{showWithCents(income.value)}</span>);
     const actionRenderer = (income) => (<Button text="Edit" onClick={() => {this.editIncome(income)}} />);
 
     const columns = [
       { title: 'Description', property: 'description' },
-      { title: 'Value', property: 'value', columnClass: 'center' },
+      { title: 'Value', columnClass: 'center', render: valueRenderer },
       { title: 'Actions', columnClass: 'center', render: actionRenderer},
     ];
     return (
