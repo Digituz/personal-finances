@@ -82,7 +82,7 @@ class App extends Component {
       items: [
         { title: 'Overview', color: 'gray', onClick: () => { this.guardedRoute() } },
         { title: 'Expenses', color: '#e6665b', onClick: () => { this.guardedRoute() } },
-        { title: 'Incomes', color: '#66ad66', onClick: () => { this.guardedRoute('/income') } },
+        { title: 'Incomes', color: '#66ad66', onClick: () => { this.guardedRoute('/incomes') } },
         { title: 'Goals', color: '#5e5eff', onClick: () => { this.guardedRoute() } },
         { title: 'Configuration', color: 'gray', onClick: () => { this.guardedRoute() } }
       ]

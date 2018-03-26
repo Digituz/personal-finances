@@ -36,7 +36,7 @@ class Income extends Component {
     PersonalFinances
       .insert(this.state.income)
       .then(() => {
-        this.props.history.push('/');
+        this.props.history.push('/incomes');
         this.props.showModal('Income Created', 'Done, you just inserted a new income transaction.');
       })
       .catch((err) => {

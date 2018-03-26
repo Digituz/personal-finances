@@ -1,10 +1,15 @@
 import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom';
 import {Card, Button, Table} from '@digituz/react-components';
 import * as PersonalFinances from '../Services/PersonalFinances';
 
 class Incomes extends Component {
   editIncome(income) {
-    console.log(income);
+    this.props.history.push(`/income/${income._id}`);
+  }
+
+  newIncome() {
+    this.props.history.push('/income');
   }
 
   render() {
@@ -17,10 +22,11 @@ class Incomes extends Component {
     ];
     return (
       <Card className="sm-12 md-10 md-pad-1 lg-8 lg-pad-2" title="Incomes">
+        <Button onClick={() => { this.newIncome() }} text="New Income" />
         <Table data={PersonalFinances.get()} columns={columns} />
       </Card>
     );
   }
 }
 
-export default Incomes;
+export default withRouter(Incomes);
