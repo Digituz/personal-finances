@@ -49,7 +49,7 @@ const remove = (id) => {
 const jsonToObject = (json) => {
   const properties = Object.getOwnPropertyNames(json);
   const object = {};
-  properties.map((property) => {
+  properties.forEach((property) => {
     let value = json[property];
     if (value.length >= 24) {
       value = new Date(value);
