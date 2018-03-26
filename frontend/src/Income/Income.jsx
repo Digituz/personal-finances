@@ -20,6 +20,7 @@ class Income extends Component {
 
   async componentDidMount() {
     const id = this.props.match.params.id;
+    if (!id) return;
     const income = (await PersonalFinances.get(id));
     this.setState({
       id,
