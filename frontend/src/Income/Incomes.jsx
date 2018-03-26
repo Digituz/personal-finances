@@ -5,7 +5,7 @@ import * as PersonalFinances from '../Services/PersonalFinances';
 
 class Incomes extends Component {
   editIncome(income) {
-    this.props.history.push(`/income/${income._id}`);
+    this.props.history.push(`/incomes/${income._id}`);
   }
 
   newIncome() {

@@ -119,7 +119,10 @@ class App extends Component {
           <Route path="/income" render={() => (
             <Income showModal={this.showModal}/>
           )} />
-          <Route path="/incomes" component={Incomes} />
+          <Route exact={true} path="/incomes" component={Incomes} />
+          <Route path="/incomes/:id" render={() => (
+            <Income showModal={this.showModal} />
+          )} />
         </PanelBody>
       </Panel>
     );

@@ -9,12 +9,22 @@ class Income extends Component {
     super();
 
     this.state = {
+      id: null,
       income: {
         date: new Date(),
         description: '',
         value: 12,
       }
     };
+  }
+
+  async componentDidMount() {
+    const id = this.props.match.params.id;
+    const income = (await PersonalFinances.get(id));
+    this.setState({
+      id,
+      income,
+    });
   }
 
   updateField(field) {
@@ -33,6 +43,18 @@ class Income extends Component {
   }
 
   save() {
+    if (this.state.id) {
+      return PersonalFinances
+        .update(this.state.id, this.state.income)
+        .then(() => {
+          this.props.history.push('/incomes');
+          this.props.showModal('Income Updated', 'Done, you just updated the income transaction.');
+        })
+        .catch((err) => {
+          console.log('Something went wrong');
+          console.log(err);
+        });
+    }
     PersonalFinances
       .insert(this.state.income)
       .then(() => {

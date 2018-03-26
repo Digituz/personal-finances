@@ -25,15 +25,38 @@ const insert = (transaction) => {
 };
 
 const get = (id) => {
-  return apiClient.get(`/${id || ''}`);
+  return new Promise((resolve, reject) => {
+    apiClient.get(`/${id || ''}`).then((response) => {
+      let data = response.data;
+      if (Array.isArray(response.data)) {
+        data = data.map(jsonToObject);
+      } else {
+        data = jsonToObject(data);
+      }
+      resolve(data);
+    }).catch(reject);
+  });
 };
 
-const update = (id) => {
-  return apiClient.put(`/${id}`);
+const update = (id, transaction) => {
+  return apiClient.put(`/${id}`, transaction);
 };
 
 const remove = (id) => {
   return apiClient.delete(`/${id}`);
+};
+
+const jsonToObject = (json) => {
+  const properties = Object.getOwnPropertyNames(json);
+  const object = {};
+  properties.map((property) => {
+    let value = json[property];
+    if (value.length >= 24) {
+      value = new Date(value);
+    }
+    object[property] = isNaN(value) ? json[property] : value;
+  });
+  return object;
 };
 
 export {
