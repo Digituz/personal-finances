@@ -6,6 +6,7 @@ import './App.css';
 import LandingPage from './LandingPage/LandingPage';
 import Callback from './Callback/Callback';
 import Income from './Income/Income';
+import Incomes from './Income/Incomes';
 
 class App extends Component {
   constructor(props) {
@@ -118,6 +119,7 @@ class App extends Component {
           <Route path="/income" render={() => (
             <Income showModal={this.showModal}/>
           )} />
+          <Route path="/incomes" component={Incomes} />
         </PanelBody>
       </Panel>
     );
