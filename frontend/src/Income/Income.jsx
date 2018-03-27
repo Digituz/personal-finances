@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
-import PropTypes from 'prop-types';
-import {Button, Card, Grid, InputLabel} from '@digituz/react-components';
+import {Button, Card, Grid, InputLabel, NotificationManager} from '@digituz/react-components';
 import * as PersonalFinances from '../Services/PersonalFinances';
 
 class Income extends Component {
@@ -49,7 +48,7 @@ class Income extends Component {
         .update(this.state.id, this.state.income)
         .then(() => {
           this.props.history.push('/incomes');
-          this.props.showModal('Income Updated', 'Done, you just updated the income transaction.');
+          NotificationManager.success('Income updated successfully.');
         })
         .catch((err) => {
           console.log('Something went wrong');
@@ -60,7 +59,7 @@ class Income extends Component {
       .insert(this.state.income)
       .then(() => {
         this.props.history.push('/incomes');
-        this.props.showModal('Income Created', 'Done, you just inserted a new income transaction.');
+        NotificationManager.success('Income inserted successfully.');
       })
       .catch((err) => {
         console.log('Something went wrong');
@@ -111,9 +110,5 @@ class Income extends Component {
     );
   }
 }
-
-Income.propTypes = {
-  showModal: PropTypes.func.isRequired,
-};
 
 export default withRouter(Income);
