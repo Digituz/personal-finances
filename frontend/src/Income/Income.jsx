@@ -12,7 +12,7 @@ class Income extends Component {
       income: {
         date: new Date(),
         description: '',
-        value: 12,
+        value: 0,
       }
     };
   }
