@@ -1,7 +1,9 @@
 import * as Auth0 from 'auth0-web';
 import React, {Component} from 'react';
 import {Route, withRouter} from 'react-router-dom';
-import {Button, If, Modal, Panel, PanelBody, PanelHeader, VerticalMenu} from '@digituz/react-components';
+import {
+  Button, If, Modal, NotificationContainer, NotificationManager, Panel, PanelBody, PanelHeader, VerticalMenu
+} from '@digituz/react-components';
 import './App.css';
 import LandingPage from './LandingPage/LandingPage';
 import Callback from './Callback/Callback';
@@ -59,12 +61,7 @@ class App extends Component {
 
   guardedRoute(url) {
     if (Auth0.isAuthenticated()) return this.go(url);
-    this.setState({
-      modalTitle: 'Hello there!',
-      modalMessage: 'Hey there! To use this functionality, first, you have to sign in. There is a button on the ' +
-      'top right corner, hit it to start using this app.',
-      showModal: true,
-    });
+    NotificationManager.warning('Sign in first, please.');
   }
 
   go(url) {
@@ -124,6 +121,7 @@ class App extends Component {
             <Income showModal={this.showModal} />
           )} />
         </PanelBody>
+        <NotificationContainer />
       </Panel>
     );
   }
