@@ -51,8 +51,8 @@ class Income extends Component {
           NotificationManager.success('Income updated successfully.');
         })
         .catch((err) => {
-          console.log('Something went wrong');
-          console.log(err);
+          if (err.message && typeof err.message === 'string') return NotificationManager.danger(err.message);
+          NotificationManager.danger('Something went wrong.');
         });
     }
     PersonalFinances
@@ -62,8 +62,8 @@ class Income extends Component {
         NotificationManager.success('Income inserted successfully.');
       })
       .catch((err) => {
-        console.log('Something went wrong');
-        console.log(err);
+        if (err.message && typeof err.message === 'string') return NotificationManager.danger(err.message);
+        NotificationManager.danger('Something went wrong.');
       });
   }
 
