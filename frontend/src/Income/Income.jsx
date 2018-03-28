@@ -67,6 +67,10 @@ class Income extends Component {
       });
   }
 
+  goBack() {
+    this.props.history.goBack();
+  }
+
   render() {
     return (
       <Card
@@ -103,7 +107,8 @@ class Income extends Component {
             />
           </div>
           <div className="sm-12">
-            <Button onClick={() => { this.save() }} text="Save" />
+            <Button className="margin-right" onClick={() => { this.save() }} text="Save" />
+            <Button className="default" onClick={() => { this.goBack() }} text="Return" />
           </div>
         </Grid>
       </Card>
