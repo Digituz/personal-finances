@@ -3,10 +3,13 @@ import * as Auth0 from 'auth0-web';
 
 let apiClient;
 
+const {protocol, hostname} = window.location;
+const baseURL = `${protocol}//${hostname}:3001/`;
+
 Auth0.subscribe((authenticated) => {
   if (authenticated) {
     apiClient = axios.create({
-      baseURL: 'http://localhost:3001/',
+      baseURL,
       timeout: 5000,
       headers: {
         'Authorization': `Bearer ${Auth0.getAccessToken()}`
