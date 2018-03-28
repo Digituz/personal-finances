@@ -1,8 +1,8 @@
-div.digituz-react-panel-header div.horizontal-menu {
+div.drc-panel-header div.horizontal-menu {
   text-align: right;
   padding-top: 9px;
 }
 
-div.digituz-react-panel-header h1 {
+div.drc-panel-header h1 {
   cursor: pointer;
 }
