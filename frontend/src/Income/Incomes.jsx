@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
-import {Card, Button, Table} from '@digituz/react-components';
-import {showWithCents} from 'mask-js';
+import {Card, Button, Dropdown, Table} from '@digituz/react-components';
+import {maskCurrency} from 'mask-js';
 import * as PersonalFinances from '../Services/PersonalFinances';
 
 class Incomes extends Component {
@@ -14,8 +14,8 @@ class Incomes extends Component {
   }
 
   render() {
-    const valueRenderer = (income) => (<span>{showWithCents(income.value)}</span>);
-    const actionRenderer = (income) => (<Button text="Edit" onClick={() => {this.editIncome(income)}} />);
+    const valueRenderer = (income) => (<span>{maskCurrency(income.value)}</span>);
+    const actionRenderer = (income) => (<Dropdown />);
 
     const columns = [
       { title: 'Description', property: 'description' },
