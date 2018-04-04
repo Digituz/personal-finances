@@ -61,7 +61,7 @@ class Incomes extends Component {
     const columns = [
       { title: 'Description', property: 'description' },
       { title: 'Value', columnClass: 'center', render: valueRenderer },
-      { title: 'Actions', columnClass: 'center', render: actionRenderer},
+      { title: 'Actions', columnClass: 'center clearfix', render: actionRenderer},
     ];
     return (
       <Card className="sm-12 md-10 md-pad-1 lg-8 lg-pad-2" title="Incomes">
