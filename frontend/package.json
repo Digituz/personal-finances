@@ -6,7 +6,7 @@
     "@digituz/react-components": "^1.2.6",
     "auth0-web": "^1.7.0",
     "axios": "^0.18.0",
-    "mask-js": "^2.0.0",
+    "mask-js": "^2.1.0",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-router-dom": "^4.2.2",

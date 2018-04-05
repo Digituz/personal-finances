@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
 import {Card, Button, DropDown, NotificationManager, Table} from '@digituz/react-components';
-import {maskCurrency} from 'mask-js';
+import {maskCurrency, maskDate} from 'mask-js';
 import * as PersonalFinances from '../Services/PersonalFinances';
 
 class Incomes extends Component {
@@ -46,6 +46,7 @@ class Incomes extends Component {
   }
 
   render() {
+    const dateRenderer = (income) => (<span>{maskDate(income.date, 'pt-BR')}</span>);
     const valueRenderer = (income) => (<span>{maskCurrency(income.value)}</span>);
     const actionRenderer = (income) => {
       const dropDownOptions = [
@@ -59,9 +60,10 @@ class Incomes extends Component {
     };
 
     const columns = [
-      { title: 'Description', property: 'description' },
+      { title: 'Date', columnClass: 'center', render: dateRenderer },
+      { title: 'Description', headerClass: 'hidden-sm', columnClass: 'hidden-sm full-width', property: 'description' },
       { title: 'Value', columnClass: 'center', render: valueRenderer },
-      { title: 'Actions', columnClass: 'center clearfix', render: actionRenderer},
+      { title: 'Actions', columnClass: 'center', render: actionRenderer},
     ];
     return (
       <Card className="sm-12 md-10 md-pad-1 lg-8 lg-pad-2" title="Incomes">
