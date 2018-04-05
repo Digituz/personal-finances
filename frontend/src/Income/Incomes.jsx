@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withRouter} from 'react-router-dom';
-import {Card, Button, Dropdown, NotificationManager, Table} from '@digituz/react-components';
+import {Card, Button, DropDown, NotificationManager, Table} from '@digituz/react-components';
 import {maskCurrency} from 'mask-js';
 import * as PersonalFinances from '../Services/PersonalFinances';
 
@@ -48,13 +48,13 @@ class Incomes extends Component {
   render() {
     const valueRenderer = (income) => (<span>{maskCurrency(income.value)}</span>);
     const actionRenderer = (income) => {
-      const dropdownOptions = [
+      const dropDownOptions = [
         { label: 'Edit', default: true, onClick: () => { this.editIncome(income) }},
         { label: 'Make a Copy', onClick: () => { this.editIncome(income) }},
         { label: 'Delete', onClick: () => { this.deleteIncome(income) }},
       ];
       return (
-        <Dropdown options={dropdownOptions} />
+        <DropDown options={dropDownOptions} />
       );
     };
 
